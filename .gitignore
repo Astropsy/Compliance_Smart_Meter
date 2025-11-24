@@ -1,0 +1,61 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+build/
+.env
+.env.local
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# PlatformIO / ESP32
+.pio/
+.pioenvs/
+.piolibdeps/
+.vscode/
+*/esp32-firmware/.pio/
+*/esp32-firmware/.cache/
+
+# Hardware
+device/hardware/*.zip
+device/hardware/*.sch
+device/hardware/*.pcb
+*.fab
+*.step
+*.stl
+
+# AWS keys & config
+cloud/aws-iot/credentials/
+cloud/aws-iot/*.pem
+cloud/aws-iot/*.key
+
+# Aiken build artifacts
+cardano/contracts/aiken/build/
+cardano/contracts/aiken/output/
+
+# TS SDK
+cardano/offchain/ts-sdk/node_modules/
+cardano/offchain/ts-sdk/dist/
+
+# EVM project
+cache/
+artifacts/
+typechain/
+
+# Logs
+*.log
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Git ignored folders from your existing project
+config/
+data/
