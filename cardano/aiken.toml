@@ -5,12 +5,12 @@ license = "Apache-2.0"
 description = "Aiken contract suite for Compliance Smart Meter."
 
 [project]
-source-dir = "cardano/aiken_contracts"
-script-dir = "cardano/plutus_scripts"
-build-dir = "cardano/build"
+source-dir = "aiken_contracts"
+script-dir = "plutus_scripts"
+build-dir  = "build"
 check-format = true
 
 dependencies = []
 
 [tests]
-test-dir = "cardano/aiken_contracts/tests"
+test-dir = "aiken_contracts/tests"
