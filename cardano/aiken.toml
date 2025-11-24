@@ -10,8 +10,7 @@ script-dir = "cardano/plutus_scripts"
 build-dir = "cardano/build"
 check-format = true
 
-[dependencies]
-# Add later if external Aiken packages are needed
+dependencies = []
 
 [tests]
 test-dir = "cardano/aiken_contracts/tests"
