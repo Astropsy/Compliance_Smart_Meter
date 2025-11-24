@@ -1,5 +1,4 @@
 module Types {
-
   const GRID_DENSITY_MICRO_KG_PER_KWH : Int = 400_000
   const MILLI_PER_KWH : Int = 1_000
   const KWH_PER_TOKEN_MILLI : Int = 2_500
