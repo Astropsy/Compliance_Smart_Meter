@@ -2,16 +2,16 @@ name = "compliance_smart_meter"
 version = "0.1.0"
 license = "Apache-2.0"
 
-"Aiken contract suite for Compliance Smart Meter."
+description = "Aiken contract suite for Compliance Smart Meter."
 
 [project]
-source-dir = "cardano/aiken_contracts"   # Where .ak files live
-script-dir = "cardano/plutus_scripts"    # Where compiled Plutus scripts go
-build-dir = "cardano/build"              # Build artifacts
-check-format = true                      # Auto format on build
+source-dir = "cardano/aiken_contracts"
+script-dir = "cardano/plutus_scripts"
+build-dir = "cardano/build"
+check-format = true
 
 [dependencies]
-# We will add later if we use external libs
+# To be added later if external Aiken packages are needed
 
 [tests]
-test-dir = "cardano/aiken_contracts/tests"   # Optional test directory
+test-dir = "cardano/aiken_contracts/tests"
