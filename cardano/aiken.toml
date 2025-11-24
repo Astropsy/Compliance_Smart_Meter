@@ -1,4 +1,4 @@
-name = "compliance_smart_meter"
+name = "compliance/smart_meter"
 version = "0.1.0"
 license = "Apache-2.0"
 
@@ -11,7 +11,7 @@ build-dir = "cardano/build"
 check-format = true
 
 [dependencies]
-# To be added later if external Aiken packages are needed
+# Add later if external Aiken packages are needed
 
 [tests]
 test-dir = "cardano/aiken_contracts/tests"
