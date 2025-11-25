@@ -1,0 +1,12 @@
+# Hardware Notes (MVP)
+
+This folder documents the physical Compliance Smart Meter.
+
+MVP scope:
+
+- ESP32-S3 module with WiFi or similar launch computer compatible device connected via ethernet.
+- Current/voltage sensing (clamp or inverter integration) as required for renewable energy output.
+- Isolated power supply suitable for solar / high voltage environments.
+- microSD for local buffering when offline ensuring longterm redundancy. 
+
+Goal for this phase: finalise reference design and produce 2 manufacturable prototypes that can be deployed for use.

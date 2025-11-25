@@ -1,0 +1,51 @@
+// cloud/aws-iot/iot-ingest-lambda.ts
+// MVP AWS IoT / Lambda style handler for raw meter messages.
+
+import { handleReading } from "../api/index";
+
+interface RawIoTMessage {
+  deviceId: string;
+  kwhMilli: number;
+  timestamp: number;
+  signature: string;
+}
+
+/**
+ * lambdaHandler
+ * -------------
+ * Triggered by AWS IoT rule when the ESP32 publishes a reading.
+ * For MVP: logs, does very basic shape check, and forwards to handleReading().
+ */
+export async function lambdaHandler(event: { payload: RawIoTMessage }) {
+  console.log("[AWS IoT] Incoming payload", event.payload);
+
+  const { deviceId, kwhMilli } = event.payload;
+
+  if (!deviceId || !kwhMilli || kwhMilli <= 0) {
+    console.warn("[AWS IoT] Invalid payload, ignoring");
+    return;
+  }
+
+  // TODO:
+  //  - verify signature with device public key
+  //  - attach producer wallet or backend address
+  // Here we use a placeholder Cardano address.
+  const fromAddress = "ADDR_TESTNET_PLACEHOLDER";
+
+  await handleReading({
+    deviceId,
+    kwhMilli,
+    fromAddress,
+  });
+}
+
+# AWS IoT Ingestion (MVP)
+
+This folder represents the first cloud hop:
+
+- ESP32 publishes signed readings to AWS IoT.
+- `iot-ingest-lambda.ts` receives the raw message.
+- It performs basic shape checks (deviceId, kwhMilli > 0).
+- It forwards valid messages to the Cloud API (`handleReading()`).
+
+Full signature verification and routing logic will be added after MVP.

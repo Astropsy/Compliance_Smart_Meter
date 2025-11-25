@@ -1,0 +1,44 @@
+// cloud/llm/summariseCompliance.ts
+// MVP placeholder for LLM based data cleaning and anti-fraud checks. We use Claude, Bedrock or similar high performance LLMs.
+
+export interface CleanedReading {
+  deviceId: string;
+  kwhMilli: number;
+  anomalies: string[];
+  flagged: boolean;
+  summary: string;
+}
+
+/**
+ * runComplianceLLM
+ * ----------------
+ * In a full build this calls an LLM (e.g. Bedrock) to:
+ *  - normalise units
+ *  - detect anomalies / tampering
+ *  - produce a human readable compliance summary
+ *
+ * For MVP we just echo the input and mark it as not flagged.
+ */
+export async function runComplianceLLM(
+  deviceId: string,
+  kwhMilli: number,
+): Promise<CleanedReading> {
+  return {
+    deviceId,
+    kwhMilli,
+    anomalies: [],
+    flagged: false,
+    summary: `Reading of ${kwhMilli} milli-kWh from device ${deviceId} passed basic checks.`,
+  };
+}
+
+# LLM Compliance Layer (MVP)
+
+This file represents the LLM step in the tamper proof flow:
+
+1. Receives deviceId + energy and emmissions readings.
+2. Normalises units and checks for obvious anomalies.
+3. Produces a short natural language compliance summary.
+4. Flags suspicious readings for review.
+
+For MVP the `runComplianceLLM()` function is a stub that always returns `flagged = false`.

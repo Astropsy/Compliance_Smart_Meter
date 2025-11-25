@@ -1,0 +1,45 @@
+# ESP32 Firmware (MVP Skeleton)
+
+Role: measure energy, sign readings, and send them to the cloud.
+
+MVP responsibilities:
+
+- Connect to WiFi (or device AP for onboarding).
+- Read milli-kWh from sensor / inverter.
+- Create payload: `device_id + kwh_milli + timestamp`.
+- Sign payload with the device's Ed25519 key.
+- Publish to AWS IoT topic as JSON.
+
+Example payload:
+
+```json
+{
+  "deviceId": "DEVICE_001",
+  "kwhMilli": 1234,
+  "timestamp": 1732464000,
+  "signature": "ed25519_signature_here"
+}
+
+
+**File:** `device/esp32-firmware/main_stub.cpp`
+
+```cpp
+// device/esp32-firmware/main_stub.cpp
+// High level pseudocode for the Compliance Smart Meter firmware (MVP).
+
+#include <Arduino.h>
+
+void setup() {
+  Serial.begin(115200);
+  // TODO: WiFi setup, device ID load, keypair load
+}
+
+void loop() {
+  // TODO: read sensor / inverter
+  // float kwhMilli = read_energy_sensor();
+
+  // TODO: build JSON payload + sign with Ed25519
+  // TODO: publish to AWS IoT over MQTT
+
+  delay(60000); // placeholder: send every 60s
+}

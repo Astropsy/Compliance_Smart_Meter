@@ -1,0 +1,43 @@
+// cloud/api/index.ts
+// Minimal HTTP style handler that would be called by AWS or similar GDPR approved cloud storage. Azure for backup.
+// to push an LLM cleaned and verified reading into Cardano via submitReading().
+
+import { submitReading } from "../../cardano/offchain-sdk/submitReading";
+import type { MeterReading } from "../../cardano/offchain-sdk/utils";
+
+export interface IncomingReadingPayload {
+  deviceId: string;
+  kwhMilli: number;
+  fromAddress: string; // Cardano address of backend signer or producer
+}
+
+/**
+ * handleReading
+ * -------------
+ * Entry point used by the cloud backend after LLM cleaning & fraud checks.
+ * For the current MVP this only logs intent and calls submitReading().
+ */
+export async function handleReading(payload: IncomingReadingPayload) {
+  const reading: MeterReading = {
+    deviceId: payload.deviceId,
+    kwhMilli: BigInt(payload.kwhMilli),
+  };
+
+  console.log("[API] Received cleaned reading", payload);
+
+  // In real deployment, fromAddress will be either:
+  //  - backend service wallet, or
+  //  - producer's wallet (if they sign).
+  await submitReading(reading, payload.fromAddress);
+
+  console.log("[API] submitReading() invoked successfully");
+}
+
+# Cloud API (MVP)
+
+Minimal API entrypoint that the cloud backend calls after:
+
+1. Device signature verification  
+2. LLM data cleaning and anti-fraud checks have been confirmed
+
+It forwards a cleaned `MeterReading` into the Cardano off-chain SDK via `submitReading()`.
